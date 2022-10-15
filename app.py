@@ -11,6 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 @app.route('/')
 def home():
+    
     return render_template('index.html')  # return a string
 
 # Start the development server using the run() method

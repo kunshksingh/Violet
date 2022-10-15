@@ -1,26 +1,60 @@
   <!DOCTYPE html>  
-  <html>  
-  <head>  
+<html>  
+<head>  
     <title>Text Conversation</title>  
     <link rel="stylesheet" href="../static/styles.css">  
-  </head>  
-  <body>  
-    <div class="container">  
-      <div class="message">  
-        <div class="bubble">  
-          <p>Hey, how's it going?</p>  
-        </div>  
-      </div>  
-      <div class="message">  
-        <div class="bubble">  
-          <p>Not bad, how about you?</p>  
-        </div>  
-      </div>  
-      <div class="message">  
-        <div class="bubble">  
-          <p>Pretty good, thanks!</p>  
-        </div>  
-      </div>  
-    </div>  
-  </body>  
-  </html>  
+</head>  
+<body>  
+  <body>
+    <div class="container">
+        <h1>Night Messenger</h1>
+        <div class="messages">
+            <div class="message">
+                <span class="name">John</span>
+                <span class="text">Hello</span>
+                <span class="time">10:00</span>
+            </div>
+            <div class="message">
+                <span class="name">Jane</span>
+                <span class="text">Hi</span>
+                <span class="time">10:01</span>
+            </div>
+            <div class="message">
+                <span class="name">John</span>
+                <span class="text">How are you?</span>
+                <span class="time">10:02</span>
+            </div>
+            <div class="message">
+                <span class="name">Jane</span>
+                <span class="text">I'm fine, thanks</span>
+                <span class="time">10:03</span>
+            </div>
+            <div class="message">
+                <span class="name">John</span>
+                <span class="text">Good to hear</span>
+                <span class="time">10:04</span>
+            </div>
+        </div>
+        <div class="input">
+            <input type="text" placeholder="Type your message here...">
+        </div>
+    </div>
+    <script>
+        // Create a javascript function that makes a night blue/purple themed text messenger application
+        // The application should have a text input field and a messages box
+        var input = document.querySelector('.input input');
+        var messages = document.querySelector('.messages');
+        var name = 'John';
+        var time = new Date().getHours() + ':' + new Date().getMinutes();
+        input.addEventListener('keypress', function(e) {
+            var key = e.which || e.keyCode;
+            if (key === 13) {
+                var text = input.value;
+                messages.innerHTML += '<div class="message"><span class="name">' + name + '</span><span class="text">' + text + '</span><span class="time">' + time + '</span></div>';
+                input.value = '';
+            }
+        });
+    </script>
+      
+</body>  
+</html>  

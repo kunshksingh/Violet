@@ -7,6 +7,7 @@ import collections
 
 
 class Experiences:
+    probDict = None
     def violetExps(self,experiences, manualExperiences):
         '''
         Generates keywords based on a list of experiences, both personally and client generated (Client generated not currently implemented).
@@ -71,11 +72,13 @@ class Experiences:
             words.extend(cleaner.clean(topTrimmedKeywords))
 
         #Make simple probability distribution
-        probDict = dict(collections.Counter(words))
-        for prob in probDict:
-            probDict[prob] = float(probDict[prob])/len(probDict)
-        return probDict
+        self.probDict = dict(collections.Counter(words))
+        for prob in self.probDict:
+            self.probDict[prob] = float(self.probDict[prob])/len(self.probDict)
+        return self.probDict
 
+    def keywords(self):
+        return self.probDict
 
         #EXAMPLE EXPERIENCE IN TOKENS IN ORDER TO GET PROBABILITY DISTRIBUTION OF WORDS
         #experienceStr = "A young and caring female therapist may have had the experience of working with a young girl who was sexually abused. The therapist may have helped the girl to feel safe and to talk about her experiences. The therapist may have also helped the girl to understand her feelings and to make a plan to heal."
