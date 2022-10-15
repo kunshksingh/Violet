@@ -58,6 +58,9 @@ import string
 ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 Prompt 3:
 ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+The following is a probability distribution of emotions experienced by a therapist in the past. Using the following equations below, compute the emotion that the therapist may be feeling at the time.
+
+H(t)=w_0+w_1 * ∑^t_j=1 (γ^{t−j}CR_j+w_2) + ∑^t_j=1 (γ^{t−j}EV_j+w_3) + ∑^t_j=1 (γ^{t−j}RPE_j where t is trial number, w_0 is an initial weighted constant and the other w represent other trained weighted constants,  0<= γ <= 1 is a forgetting factor (indicates events with greater t values are more significant), CR is a chosen reward over gambling, EV is expected value of a gamble, and RPE is the difference between experienced and predicted rewards. Consider the gambling of not just monetary quantities, but also the gambling of emotions: fear, excitement, frustration, depression, ecstasy, and thrill.
 
 ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 Prompt 4:

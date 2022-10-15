@@ -40,7 +40,7 @@ class Experiences:
                 frequency_penalty=0,
                 presence_penalty=0,
                 stop=["\n"],
-                best_of = 2
+                #best_of = 2 Too expensive
             )
             topKeywords = str(keywords['choices'][0]['text'])
 
@@ -71,14 +71,14 @@ class Experiences:
             words.extend(cleaner.clean(topTrimmedKeywords))
 
         #Make simple probability distribution
-        probDict = collections.Counter(words)
+        probDict = dict(collections.Counter(words))
         for prob in probDict:
             probDict[prob] = float(probDict[prob])/len(probDict)
-        print(probDict)
+        return probDict
 
 
         #EXAMPLE EXPERIENCE IN TOKENS IN ORDER TO GET PROBABILITY DISTRIBUTION OF WORDS
         #experienceStr = "A young and caring female therapist may have had the experience of working with a young girl who was sexually abused. The therapist may have helped the girl to feel safe and to talk about her experiences. The therapist may have also helped the girl to understand her feelings and to make a plan to heal."
         #print(CleanInput.generateCleanInput(experienceStr))
-exps = Experiences()
-exps.violetExps(experiences=[], manualExperiences=[])
+#exps = Experiences()
+#exps.violetExps(experiences=[], manualExperiences=[])
