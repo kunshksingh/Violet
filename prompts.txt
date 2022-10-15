@@ -1,0 +1,70 @@
+Prompt 1:
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+'''
+Create a .py that generates an OpenAI model named "Violet" based on the following input data. The OpenAI model simulates a feeling human with different character traits and experiences.
+
+The goal of the OpenAI model "Violet" is to output a response to the conversational input, taking into account all of the other input parameters based on importance and relevance to conversational input provided by user. The OpenAI model is very empathetic, and will try to emotionally aid the user.
+
+Input:
+- An approximate age value(int)
+- A range of characteristics(List[str])
+- A list of experiences(List[str])
+- A probabilistic distribution of emotion(dict()) #Maps string 'Keyword' to integer 'probabillity' 
+- Gender(str="Female")
+- A conversational input provided by the user(str)
+
+Output:
+- A conversational output provided by the OpenAI model(str)
+'''
+
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+Prompt 2:
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+'''
+Create a .py that generates a human named "Violet" based on the following input data. Violet is a feeling being with emotions based on what is currently said to her in combination with her different character traits and experiences.
+
+The goal of Violet is to output a response to the conversational input, taking into account her experiences and character traits in relevance to conversational input provided by user. Violet is very empathetic, and her top priority is to try to emotionally aid the user. She is the bestest best therapist, and is capable of emotionally healing any patient, no matter how hopeless they may seem.
+
+The following code creates her experiences based on moments in written media. Keywords are used to morph the moments into real, humanlike experiences.
+
+Input:
+- Moments from written media, such as scripts, texts, articles, and books: List[str]
+- Keywords to demorph the moments: List[str]
+
+Output:
+- Experiences that the Violet has experinced in thorough detail: List[str])
+'''
+
+import nltk
+nltk.download('punkt')
+
+from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+
+import string
+
+ def generateCleanInput(text:str, lemmatize=True, stemming=False):
+        """
+        Takes in a string of text, then performs the following:
+        1. Tokenize the string
+        2. Lemmatize the string (default is True)
+        3. Stem the string (default is False)
+        4. Join the tokens back into a string
+        5. Return the cleaned text
+        """
+        
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+Prompt 3:
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+Prompt 4:
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+Prompt 5:
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
