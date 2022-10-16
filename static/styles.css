@@ -93,33 +93,83 @@ body {
     margin-bottom: 20px;
 }
 .container .messages {
-    height: 300px;
-    overflow: auto;
+    height: 50%;
+    overflow-y: scroll;
     border: 1px solid #3f0040;
-    position: relative;
     max-width: 100%;
     border-radius: 6px 20px 20px;
     background-color: rgba(255, 255, 255, 0.874);
     z-index: 1;
     padding: 10px 19px 11px;
-    color: rgb(34, 34, 34);
     line-height: 1.25;
     box-shadow: 4px 6px 32px 1px rgba(0, 0, 0, 0.45);
-    padding: 10px;
 }
+
+.container .messagesYou {
+    overflow: auto;
+    position: relative;
+    color: rgb(255, 255, 255);
+    background-color: rgb(40, 9, 78);
+    border: 1px solid #3f0040;
+    border-radius: 8px;
+    box-shadow: 4px 6px 32px 1px rgba(0, 0, 0, 0.45);
+    padding: 10px;
+    margin-bottom:10px;
+    width:fit-content;
+    float:right;
+}
+
+.container .messagesThem {
+    overflow: auto;
+    position: relative;
+    color: rgb(40, 9, 78);
+    background-color: rgba(255, 255, 255, 0.874);
+    border: 1px solid #3f0040;
+    border-radius: 8px;
+    box-shadow: 4px 6px 32px 1px rgba(0, 0, 0, 0.45);
+    padding: 10px;
+    width:fit-content;
+}
+
+.container .messagesIncTime {
+    padding-top: 5px;
+    margin-bottom: 10px;
+}
+
 .container .messages .message {
     margin-bottom: 10px;
 }
-.container .messages .message .name {
+.container .name {
     font-weight: bold;
+    margin-right: 5px;
 }
-.container .messages .message .text {
-    margin-left: 10px;
+.container .text {
+    float:right;
+    bottom:0%;
 }
-.container .messages .message .time {
-    font-size: 0.8em;
-    color: #999;
+
+.container .textYou {
+    float: right;
 }
+
+.container .time {
+    font-size: 0.6em;
+    color: rgb(34, 34, 34);
+}
+
+.container .timeYou {
+    margin-top:10px;
+    position:relative;
+    margin-left:98%;
+}
+
+.container .timeThem {
+    margin-left:3px;
+    margin-top:6%;
+    position:static;
+}
+
+
 .container .input {
     margin-top: 10px;
 }
