@@ -15,4 +15,7 @@ class Emotion:
             presence_penalty=0.9
         )
         return str(emotion['choices'][0]['text'])
-        #TODO Create another method that creates voice fluctuations based on emotion: includes breaths/softness in voice/inflections.
+    #TODO Create another method that creates voice fluctuations based on emotion: includes breaths/softness in voice/inflections
+    def voiceModulater(self):
+        pass
+    

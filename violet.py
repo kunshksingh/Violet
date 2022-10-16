@@ -24,6 +24,10 @@ Output:
 #import json
 #import pickle
 #import nltk
+from Questions import *
+from Answers import *
+from Experiences import *
+from Emotion import *
 
 class Violet:
     def __init__(self, convo, insight, characteristics, emotion, age="22", gender="female", pronoun="she",pronounP="her"):

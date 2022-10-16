@@ -86,6 +86,7 @@ body {
 .container {
     width: 500px;
     margin: 0 auto;
+    opacity: 0.8;
 }
 .container h1 {
     text-align: center;
@@ -194,7 +195,7 @@ body {
         opacity:1;
         /*width: 10%;*/
         color: #fff;
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(255, 255, 255), 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
     }
     50% {
         color: #ff00de;

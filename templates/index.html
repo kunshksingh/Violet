@@ -74,17 +74,19 @@
           </div>
           
       </div>
-          <div class="input">
-            <input type="text" placeholder="Type your message here...">
-          </div>
-        
+          <form method = "POST">
+            <div class="input">
+              <input name="lastmsg" type="text" placeholder="Type your message here...">
+            </div>
+          </form>
       <script>
+
           // Create a javascript function that makes a night blue/purple themed text messenger application
           // The application should have a text input field and a messages box
           //TODO LOCK CHATBAR WHEN NO MESSAGES ARE COMING THROUGH
           var input = document.querySelector('.input input');
           var messages = document.querySelector('.messages');
-          var name = 'John';
+          var name = 'User';
           var hours = new Date().getHours();
           var mins =  new Date().getMinutes();
           var minsStr = '';
