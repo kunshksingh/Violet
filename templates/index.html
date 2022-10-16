@@ -56,6 +56,7 @@
           </div>
           <!-- <span class="time timeThem">10:01</span>-->
         </div>
+        <div id = "ezDelete" >
         {% for msg in data["conversation"] %}
         <div class="messagesIncTime">
           <div class="messagesYou">
@@ -72,11 +73,13 @@
           <!-- <span class="time timeThem">10:01</span>-->
         </div>
         {% endfor %}
+      </div>
           <form method="post">
-          <div class="input">
-            <input name="lastmsg" type="text" placeholder="Type your message here...">
+          <div class="input" style="margin-top:30px">
+            <span><input name="lastmsg" type="text" placeholder="Type your message here..."> <div class="loading-circle"></div></span>
           </div>
           </form>
+          <button class = "reset col-12-sm right" id="reset">RESET</button>
             <script type = "text/javascript" src = "../static/app.js"></script>
             <!--
             <script>
@@ -113,7 +116,13 @@
               var time =  hours+ ':' +minsStr;
                 
               $("#reset").click(function(){
-                document.location.reload(true);
+                
+                var elms = document.getElementById('ezDelete');
+                elms.parentNode.removeChild(elms)
+                $.ajax({ 
+                    type: 'GET',
+                    url: '/reset',
+                  });
               });
               input.addEventListener('keypress', function(e) {
                 var msgs = document.getElementsByClassName("message");

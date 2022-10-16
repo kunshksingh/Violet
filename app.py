@@ -1,5 +1,5 @@
 # Import flask and render_template
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 import os
 from Main import *
 
@@ -14,6 +14,11 @@ m = Main()
 # Use the decorator pattern to
 # link the view function to a url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+@app.route('/reset', methods=["GET"])
+def reset():
+    global conversation
+    conversation = []
+    return ""
 
 @app.route('/home')
 def home():
@@ -22,7 +27,11 @@ def home():
 @app.route('/')
 def index():
     global conversation
-    conversation.remove(conversation[0])
+    try:
+        conversation.remove(conversation[0])
+        conversation.remove(conversation[0])
+    except:
+        pass
     data = {"conversation":conversation}
     return render_template('index.html', data=data) 
 '''
@@ -49,15 +58,17 @@ def sendmessage():
 def index_form():
     global conversation
     data = request.form['lastmsg']
+    conversation.append((None,data))
+    #print(conversation, "D")
+    response = m.main(conversation).replace("\"","")
+    conversation = conversation[:len(conversation)-1]
     conversation.append(data)
-
-    response = m.main(conversation)
     conversation.append(response)
     conversationTop = conversation[-1]
     conversationTop2 = conversation[-2]
     conversation = conversation[:len(conversation)-2]
     conversation.append((conversationTop2,conversationTop))
-    print(conversation)
+    #print(conversation, "C")
     data = {"conversation":conversation}
     return render_template('index.html',  data=data) 
 
@@ -67,7 +78,7 @@ def login():
 
 @app.route('/about/')
 def about():
-    return redirect("https://devpost.com/software/ai-therapist")
+    return render_template('about.html') 
 
 @app.route('/access/')
 def access():

@@ -56,6 +56,18 @@ class Main():
         v.convo = currConvo
         self.p1()
         v.output = v.generate_output()
+        try:
+            v.output.replace("Violet would say","")
+        except:
+            pass
+        try:
+            v.output.replace("Violet would say","")
+        except:
+            pass
+        try:
+            v.output.replace("\"","")
+        except:
+            pass
         return v.output
     def parseConvo(self,conversation):
         '''
@@ -87,14 +99,11 @@ class Main():
 
     #TODO Implement multithreading to sufficiently speed up Violet's runtime
     def main(self,c):
-       
         convos = []
         for tuplet in c:
             convos.extend(tuplet)
-        convos = ((" ").join(convos)).split(' ')
+        convos = [element for element in convos if element is not None]
         convos.insert(0,"Hi, I'm Violet. It's so nice to meet you today!")
-        print(convos, "CONVOS")
-        return "Hello!"
         if (v.emotion is None):
             self.p2()
-        return self.updateConvo(c)
+        return self.updateConvo(convos)
