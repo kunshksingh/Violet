@@ -80,7 +80,6 @@
           </div>
           <span class="time timeYou">10:04</span>
         </div>
-          
       </div>
           
           <div class="input">
@@ -109,7 +108,7 @@
               var key = e.which || e.keyCode;
               if (key === 13) {
                   var text = input.value;
-                  messages.innerHTML += '<div class="message"><span class="name">' + name + '</span><span class="text">' + text + '</span><span class="time"> ' + time + '</span></div>';
+                  messages.innerHTML += '<br/><br/><div class="messagesIncTime"><div class="messagesYou"><span class="text">' + text + '</span></div><span class="time timeYou"> ' + time + '</span></div>';
                   input.value = '';
               }
           });
