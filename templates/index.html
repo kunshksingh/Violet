@@ -1,60 +1,117 @@
-  <!DOCTYPE html>  
+
+<!DOCTYPE html>  
 <html>  
 <head>  
-    <title>Text Conversation</title>  
+    <title>Violet</title>  
     <link rel="stylesheet" href="../static/styles.css">  
+     <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  
 </head>  
-<body>  
-  <body>
-    <div class="container">
-        <h1>Night Messenger</h1>
-        <div class="messages">
-            <div class="message">
-                <span class="name">John</span>
-                <span class="text">Hello</span>
-                <span class="time">10:00</span>
-            </div>
-            <div class="message">
-                <span class="name">Jane</span>
-                <span class="text">Hi</span>
-                <span class="time">10:01</span>
-            </div>
-            <div class="message">
-                <span class="name">John</span>
-                <span class="text">How are you?</span>
-                <span class="time">10:02</span>
-            </div>
-            <div class="message">
-                <span class="name">Jane</span>
-                <span class="text">I'm fine, thanks</span>
-                <span class="time">10:03</span>
-            </div>
-            <div class="message">
-                <span class="name">John</span>
-                <span class="text">Good to hear</span>
-                <span class="time">10:04</span>
-            </div>
-        </div>
-        <div class="input">
-            <input type="text" placeholder="Type your message here...">
-        </div>
+<body class = "bgimg" >  
+  <nav class="navbar navbar-expand-md navbar-dark shadow-5-strong bg-dark fixed-top right">
+    <div class="starter-template container">
+      <div class="violet"type="button">
+        <a href="/" style = "text-decoration: none!important;">
+          <div class="violet-text">
+              <span>V</span>
+              <span>I</span>
+              <span>O</span>
+              <span>L</span>
+              <span>E</span>
+              <span>T</span>
+          </div>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-inner navbar-nav ms-auto">
+          <li class="nav-item active col-23">
+            <a class="nav-link" href="/about/" style=" margin-right:30px; color: #8064A2">About</a>
+          </li>
+          <li class="nav-item active col-23">
+            <a class="nav-link" href="https://github.com/kunshksingh/Violet" style=" margin-right:30px; color: #8064A2">Github</a>
+          </li>
+          <li class="nav-item active col-23">
+            <a class="nav-link" href="/access/" style=" margin-right:30px; color: #8064A2">Access</a>
+          </li>
+          <li class="nav-item col-4">
+            <a href = "/login/"><button class="btn btn-outline-success my-2 my-sm-0" type = "submit">Login</button></a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <script>
-        // Create a javascript function that makes a night blue/purple themed text messenger application
-        // The application should have a text input field and a messages box
-        var input = document.querySelector('.input input');
-        var messages = document.querySelector('.messages');
-        var name = 'John';
-        var time = new Date().getHours() + ':' + new Date().getMinutes();
-        input.addEventListener('keypress', function(e) {
-            var key = e.which || e.keyCode;
-            if (key === 13) {
-                var text = input.value;
-                messages.innerHTML += '<div class="message"><span class="name">' + name + '</span><span class="text">' + text + '</span><span class="time">' + time + '</span></div>';
-                input.value = '';
-            }
-        });
-    </script>
-      
+  </nav>
+  <main role="main" class="container" style="margin-top:100px">
+      <div class="messages">
+          <div class="message">
+              <span class="name">John</span>
+              <span class="text">Hello</span>
+              <span class="time">10:00</span>
+          </div>
+          <div class="message">
+              <span class="name">Jane</span>
+              <span class="text">Hi</span>
+              <span class="time">10:01</span>
+          </div>
+          <div class="message">
+              <span class="name">John</span>
+              <span class="text">How are you?</span>
+              <span class="time">10:02</span>
+          </div>
+          <div class="message">
+              <span class="name">Jane</span>
+              <span class="text">I'm fine, thanks</span>
+              <span class="time">10:03</span>
+          </div>
+          <div class="message">
+              <span class="name">John</span>
+              <span class="text">Good to hear</span>
+              <span class="time">10:04</span>
+          </div>
+          
+      </div>
+          <div class="input">
+            <input type="text" placeholder="Type your message here...">
+          </div>
+        
+      <script>
+          // Create a javascript function that makes a night blue/purple themed text messenger application
+          // The application should have a text input field and a messages box
+          //TODO LOCK CHATBAR WHEN NO MESSAGES ARE COMING THROUGH
+          var input = document.querySelector('.input input');
+          var messages = document.querySelector('.messages');
+          var name = 'John';
+          var hours = new Date().getHours();
+          var mins =  new Date().getMinutes();
+          var minsStr = '';
+          if (mins < 10){
+            minsStr = mins + mins.toString();
+          }
+          else{
+            minsStr = mins.toString();
+          }
+          var time =  hours+ ':' +minsStr;
+          input.addEventListener('keypress', function(e) {
+              var key = e.which || e.keyCode;
+              if (key === 13) {
+                  var text = input.value;
+                  messages.innerHTML += '<div class="message"><span class="name">' + name + '</span><span class="text">' + text + '</span><span class="time"> ' + time + '</span></div>';
+                  input.value = '';
+              }
+          });
+      </script>
+
+          <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <!-- JavaScript Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </main>
+        
 </body>  
-</html>  
+</html>
