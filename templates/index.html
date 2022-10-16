@@ -49,6 +49,7 @@
   </nav>
   <main role="main" class="container" style="margin-top:100px">
       <div class="messages">
+        {% for msg in conversation%}
         <div class="messagesIncTime">
           <div class="messagesYou">
               <span class="textYou">Hello</span>
@@ -63,79 +64,64 @@
           </div>
           <span class="time timeThem">10:01</span>
         </div>
-        <div class="messagesIncTime">
-          <div class="messagesYou">
-              <span class="textYou">How are you?</span>
-          </div>
-          <span class="time timeYou">10:02</span>
-        </div>
-        <div class="messagesIncTime">
-          <div class="messagesThem">
-              <span class="name">Jane </span>
-              <span class="text">I'm fine, thanks</span>
-          </div>
-          <span class="time timeThem">10:03</span>
-        </div>
-        <div class="messagesIncTime">
-          <div class="messagesYou">
-              <span class="textYou">Good to hear</span>
-          </div>
-          <span class="time timeYou">10:04</span>
-        </div>
-      </div>
-          <!-- <form> -->
+        {%end for}
+          <form>
           <div class="input">
             <input name="lastmsg" type="text" placeholder="Type your message here...">
           </div>
-             <!-- </form> -->
+          </form>
             <script type = "text/javascript" src = "../static/app.js"></script>
             <script>
    
              // Create a javascript function that makes a night blue/purple themed text messenger application
              // The application should have a text input field and a messages box
-             //TODO LOCK CHATBAR WHEN NO MESSAGES ARE COMING THROUGH 
-              var input = document.querySelector('.input input');
-   
+             // Lock chatbar when no messages come through
+            var delayInMilliseconds = 1000; 
+
+            setTimeout(function() {
+              var convos = $('.messageIncTime.messagesYou.textYou');
               var messages = document.querySelector('.messages');
-             /* $.ajax({ 
-                 type: 'POST',
-                 url: '/',
-                 data: {"Input":"lastmsg"},
-                 contentType: 'application/json',
-                 success: function (response_data) {
-                 alert("success");
-                 }
-               }); */
-               var name = 'User';
-               var hours = new Date().getHours();
-               var mins =  new Date().getMinutes();
-               var minsStr = '';
-               if (mins < 10){
-                 minsStr = mins + mins.toString();
-               }
-               else{
-                 minsStr = mins.toString();
-               }
-               var time =  hours+ ':' +minsStr;
-              
-   
-               input.addEventListener('keypress', function(e) {
-                  var msgs = document.getElementsByClassName("message");
-                  var key = e.which || e.keyCode;
-                  
-                   if (key === 13) {
-                      var text = input.value;
-                      console.log(text)
-                      if (text.length > 0){
-                        messages.innerHTML += '<br/><br/><div class="messagesIncTime"><div class="messagesYou"><span class="text">' + text + '</span></div><span class="time timeYou"> ' + time + '</span></div>';
-                        input.value = '';
+                $.ajax({ 
+                    type: 'POST',
+                    url: '/sendmessage',
+                    data: JSON.stringify({"out": convos}),
+                    contentType: 'application/json',
+                    //success: function (response_data) { 
+                    //alert("success");
+                    //}
+                  });
+                  var name = 'User';
+                  var hours = new Date().getHours();
+                  var mins =  new Date().getMinutes();
+                  var minsStr = '';
+                  if (mins < 10){
+                    minsStr = mins + mins.toString();
+                  }
+                  else{
+                    minsStr = mins.toString();
+                  }
+                  var time =  hours+ ':' +minsStr;
+                
+
+                  input.addEventListener('keypress', function(e) {
+                    var msgs = document.getElementsByClassName("message");
+                    var key = e.which || e.keyCode;
+                    
+                      if (key === 13) {
+                        var text = input.value;
+                        console.log(text)
+                        if (text.length > 0){
+                          messages.innerHTML += '<br/><br/><div class="messagesIncTime"><div class="messagesYou"><span class="text">' + text + '</span></div><span class="time timeYou"> ' + time + '</span></div>';
+                          input.value = '';
+                        }
+                        
+                        
                       }
-                      
-                      myVar = reflexive({{msgouts|tojson}})
-                   }
-   
-               });
-   
+
+                  });
+
+            }, delayInMilliseconds);
+           
          </script>
    
              <!-- Bootstrap core JavaScript
