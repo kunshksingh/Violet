@@ -1,5 +1,5 @@
 # Import flask and render_template
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import os
 from Main import *
 
@@ -67,7 +67,7 @@ def login():
 
 @app.route('/about/')
 def about():
-    return render_template('about.html') 
+    return redirect("https://devpost.com/software/ai-therapist")
 
 @app.route('/access/')
 def access():
