@@ -7,9 +7,9 @@ from Main import *
 app = Flask(__name__)
 conversation = []
 times = []
-texts = dict(zip(conversation, times))
-converation = []
+#texts = dict(zip(conversation, times))
 response = "Hi, I'm Violet. It's so nice to meet you today!"
+#conversation.append(response)
 m = Main()
 # Use the decorator pattern to
 # link the view function to a url
@@ -21,11 +21,14 @@ def home():
 
 @app.route('/')
 def index():
+    global conversation
+    conversation.remove(conversation[0])
     data = {"conversation":conversation}
     return render_template('index.html', data=data) 
-
+'''
 @app.route('/sendmessage', methods=["POST"])
 def sendmessage():
+    global conversation
     data = request.get_json()
     data = str(data)
     data = data[data.find("lastmsg=")+8:]
@@ -34,14 +37,29 @@ def sendmessage():
     conversation.append(data)
     response = m.main(conversation)
     conversation.append(response)
-    print(conversation)
-    return "E"
+    conversationTop = conversation[-1]
+    conversationTop2 = conversation[-2]
+    conversation = conversation[:len(conversation)-2]
+    conversation.append((conversationTop2,conversationTop))
 
+    return "E"
+'''
 
 @app.route('/', methods=["POST"])
 def index_form():
-    print(request.form['lastmsg'])
-    return render_template('index.html') 
+    global conversation
+    data = request.form['lastmsg']
+    conversation.append(data)
+
+    response = m.main(conversation)
+    conversation.append(response)
+    conversationTop = conversation[-1]
+    conversationTop2 = conversation[-2]
+    conversation = conversation[:len(conversation)-2]
+    conversation.append((conversationTop2,conversationTop))
+    print(conversation)
+    data = {"conversation":conversation}
+    return render_template('index.html',  data=data) 
 
 @app.route('/login/')
 def login():

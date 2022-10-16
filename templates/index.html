@@ -49,20 +49,27 @@
   </nav>
   <main role="main" class="container" style="margin-top:100px">
       <div class="messages">
-        {% for msg in data %}
+        <div class="messagesIncTime">
+          <div class="messagesThem">
+              <span class="name">Violet</span>
+              <span class="text">Hi, I'm Violet. It's so nice to meet you today!</span>
+          </div>
+          <!-- <span class="time timeThem">10:01</span>-->
+        </div>
+        {% for msg in data["conversation"] %}
         <div class="messagesIncTime">
           <div class="messagesYou">
-              <span class="textYou">Hello</span>
+              <span class="textYou">{{msg[0]}}</span>
           </div>
-          <span class="time timeYou">10:00</span>
+          <!-- <span class="time timeYou">10:00</span>-->
         </div>
         <br/>
         <div class="messagesIncTime">
           <div class="messagesThem">
               <span class="name">Violet </span>
-              <span class="text">Hi</span>
+              <span class="text">{{msg[1]}}</span>
           </div>
-          <span class="time timeThem">10:01</span>
+          <!-- <span class="time timeThem">10:01</span>-->
         </div>
         {% endfor %}
           <form method="post">
@@ -92,7 +99,28 @@
             //setTimeout(function() {
               var convos = $('.messageIncTime.messagesYou.textYou');
               var messages = document.querySelector('.messages');
-                $.ajax({ 
+              
+              var name = 'User';
+              var hours = new Date().getHours();
+              var mins =  new Date().getMinutes();
+              var minsStr = '';
+              if (mins < 10){
+                minsStr = mins + mins.toString();
+              }
+              else{
+                minsStr = mins.toString();
+              }
+              var time =  hours+ ':' +minsStr;
+                
+              $("#reset").click(function(){
+                document.location.reload(true);
+              });
+              input.addEventListener('keypress', function(e) {
+                var msgs = document.getElementsByClassName("message");
+                var key = e.which || e.keyCode;
+                
+                  if (key === 13) {
+                    $.ajax({ 
                     type: 'POST',
                     url: '/sendmessage',
                     data: JSON.stringify({"out": convos}),
@@ -101,35 +129,17 @@
                     //alert("success");
                     //}
                   });
-                  var name = 'User';
-                  var hours = new Date().getHours();
-                  var mins =  new Date().getMinutes();
-                  var minsStr = '';
-                  if (mins < 10){
-                    minsStr = mins + mins.toString();
-                  }
-                  else{
-                    minsStr = mins.toString();
-                  }
-                  var time =  hours+ ':' +minsStr;
-                
-
-                  input.addEventListener('keypress', function(e) {
-                    var msgs = document.getElementsByClassName("message");
-                    var key = e.which || e.keyCode;
+                    var text = input.value;
+                    console.log(text)
+                    if (text.length > 0){
+                      messages.innerHTML += '<br/><br/><div class="messagesIncTime"><div class="messagesYou"><span class="text">' + text + '</span></div><span class="time timeYou"> ' + time + '</span></div>';
+                      input.value = '';
+                    }
                     
-                      if (key === 13) {
-                        var text = input.value;
-                        console.log(text)
-                        if (text.length > 0){
-                          messages.innerHTML += '<br/><br/><div class="messagesIncTime"><div class="messagesYou"><span class="text">' + text + '</span></div><span class="time timeYou"> ' + time + '</span></div>';
-                          input.value = '';
-                        }
-                        
-                        
-                      }
+                    
+                  }
 
-                  });
+              });
 
             //}, delayInMilliseconds);
            
