@@ -94,7 +94,8 @@ body {
 }
 .container .messages {
     height: 50%;
-    overflow: auto;
+    overflow-x: absolute;
+    overflow-y: auto;
     border: 1px solid #3f0040;
     max-width: 100%;
     border-radius: 6px 20px 20px;
@@ -114,7 +115,9 @@ body {
     border-radius: 8px;
     box-shadow: 4px 6px 32px 1px rgba(0, 0, 0, 0.45);
     padding: 10px;
+    margin-bottom:10px;
     width:fit-content;
+    float:right;
 }
 
 .container .messagesThem {
@@ -130,7 +133,7 @@ body {
 }
 
 .container .messagesIncTime {
-    padding: 10px;
+    padding: 15px;
 }
 
 .container .messages .message {
@@ -138,9 +141,12 @@ body {
 }
 .container .name {
     font-weight: bold;
+    margin-right: 5px;
 }
 .container .text {
-    margin-left: 10px;
+    float:right;
+    bottom:0%;
+    left:5%;
 }
 
 .container .textYou {
@@ -152,8 +158,21 @@ body {
     font-size: 0.6em;
     color: rgb(34, 34, 34);
     position: absolute;
-    right: 10%;
 }
+
+.container .timeYou {
+    right: 10%;
+    margin-top:45px;
+    margin-right:5px;
+}
+
+.container .timeThem {
+    left: 10%;
+    margin-top:5px;
+    margin-left:3px;
+}
+
+
 .container .input {
     margin-top: 10px;
 }
