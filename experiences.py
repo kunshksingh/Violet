@@ -55,7 +55,7 @@ class Experiences:
                 presence_penalty=0
             )
             topKeywords2 = str(topKeywords+keywords2['choices'][0]['text'])
-            print(topKeywords2)
+            #print(topKeywords2)
             #start_sequence = "Traits:"
 
             keywordsTrimmed = openai.Completion.create(
@@ -77,11 +77,9 @@ class Experiences:
             self.probDict[prob] = float(self.probDict[prob])/len(self.probDict)
         return self.probDict
 
-    def keywords(self):
-        return self.probDict
 
         #EXAMPLE EXPERIENCE IN TOKENS IN ORDER TO GET PROBABILITY DISTRIBUTION OF WORDS
         #experienceStr = "A young and caring female therapist may have had the experience of working with a young girl who was sexually abused. The therapist may have helped the girl to feel safe and to talk about her experiences. The therapist may have also helped the girl to understand her feelings and to make a plan to heal."
         #print(CleanInput.generateCleanInput(experienceStr))
-#exps = Experiences()
-#exps.violetExps(experiences=[], manualExperiences=[])
+exps = Experiences()
+exps.violetExps(experiences=[], manualExperiences=[])
