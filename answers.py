@@ -2,6 +2,7 @@ import openai
 import os
 from decouple import config
 from Questions import *
+import time
 
 class Answers:
     def davidHilbert(self,context, questions):
@@ -41,15 +42,16 @@ class Answers:
             model="text-davinci-002",
             prompt=context+questions+ansPrompt+preliminary+ansPrompt2+hidden+ansPrompt3,
             temperature=0.1,
-            max_tokens=300, 
+            max_tokens=400, 
             top_p=1,
             frequency_penalty=0,
             presence_penalty=0
         )
-        combined = str(ans3['choices'][0]['text'])
+        combined = str(ans3['choices'][0]['text']).lstrip()
         return combined
 '''
 Test questios and answers based on patient input
+Use sampleconvo.txt
 '''
 '''
 qTest = Questions()
@@ -60,9 +62,12 @@ while True:
         lines.append(line)
     else:
         break
+start = time.time()
 text = '\n'.join(lines)
 questions = Questions.socrates(text, str(text.split('P: '))[-1])
 aTest = Answers()
 print(aTest.davidHilbert(text, questions))
+print(time.time()-start, "seconds")
 '''
+
 

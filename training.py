@@ -1,3 +1,3 @@
 class Training:
-    #Create logic to train model
+    #Create logic to fine tune model
     pass

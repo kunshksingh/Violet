@@ -15,17 +15,48 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def home():
     return render_template('home.html') 
 
+#@app.route('/', methods=["GET", "POST"])
 @app.route('/')
 def index():
-    converation = []
-    return render_template('index.html') 
+    conversation = []
+    #rf = request.json
+    #print(rf)
+    #for key in rf.keys():
+        #data = key
+    #print(data)
+    #data_dic = json.loads(data)
+    #print(data_dic.keys())
+    #sum_data = data_dic['sum']
+   #if request.method == "POST":
+    msgs = request.form.get('msgs')
+    print(msgs)
+    #Message = {"Message": msgs}
+    return render_template('index.html', msgouts=msgs) 
 
 
-@app.route('/', methods=["POST"])
-def index_form():
-    print(request.form['lastmsg'])
-    return render_template('index.html') 
 
+    # userText = request.args.get("lastmsg")
+    # print(userText)
+    #print("referes")
+
+
+
+
+#@app.route('/', methods=['GET', 'POST'])
+#def index_form():
+    #print(request.form['lastmsg'])
+    #userText = request.args.get('input')
+    #print(userText)
+    #return render_template('index.html') 
+'''
+@app.route('/', methods=['POST'])
+def get_response():
+    #print(request.form['lastmsg'])
+    userText = request.get['lastmsg']
+    print(userText)
+    print("efefefs")
+    return
+'''
 @app.route('/login/')
 def login():
     return render_template('login.html') 
@@ -39,5 +70,5 @@ def access():
     return render_template('access.html') 
 
 # Start the development server using the run() method
-if __name__ == '__main__':
+if __name__ == 'main':
     app.run()

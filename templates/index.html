@@ -4,13 +4,15 @@
 <head>  
     <title>Violet</title>  
     <link rel="stylesheet" href="../static/styles.css">  
+    <link rel="stylesheet" href="../static/styles.css">  
+    
      <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  
+    <link rel="shortcut icon" href="../favicon.ico">
 </head>  
 <body class = "bgimg" >  
   <nav class="navbar navbar-expand-md navbar-dark shadow-5-strong bg-dark fixed-top right">
@@ -81,46 +83,68 @@
           <span class="time timeYou">10:04</span>
         </div>
       </div>
-          
+          <!-- <form> -->
           <div class="input">
             <input name="lastmsg" type="text" placeholder="Type your message here...">
           </div>
-        
-      <script>
-
-          // Create a javascript function that makes a night blue/purple themed text messenger application
-          // The application should have a text input field and a messages box
-          //TODO LOCK CHATBAR WHEN NO MESSAGES ARE COMING THROUGH
-          var input = document.querySelector('.input input');
-          var messages = document.querySelector('.messages');
-          var name = 'User';
-          var hours = new Date().getHours();
-          var mins =  new Date().getMinutes();
-          var minsStr = '';
-          if (mins < 10){
-            minsStr = mins + mins.toString();
-          }
-          else{
-            minsStr = mins.toString();
-          }
-          var time =  hours+ ':' +minsStr;
-          input.addEventListener('keypress', function(e) {
-              var key = e.which || e.keyCode;
-              if (key === 13) {
-                  var text = input.value;
-                  messages.innerHTML += '<br/><br/><div class="messagesIncTime"><div class="messagesYou"><span class="text">' + text + '</span></div><span class="time timeYou"> ' + time + '</span></div>';
-                  input.value = '';
-              }
-          });
-      </script>
-
-          <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <!-- JavaScript Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    </main>
-        
-</body>  
-</html>
+             <!-- </form> -->
+            <script type = "text/javascript" src = "../static/app.js"></script>
+            <script>
+   
+             // Create a javascript function that makes a night blue/purple themed text messenger application
+             // The application should have a text input field and a messages box
+             //TODO LOCK CHATBAR WHEN NO MESSAGES ARE COMING THROUGH 
+              var input = document.querySelector('.input input');
+   
+              var messages = document.querySelector('.messages');
+             /* $.ajax({ 
+                 type: 'POST',
+                 url: '/',
+                 data: {"Input":"lastmsg"},
+                 contentType: 'application/json',
+                 success: function (response_data) {
+                 alert("success");
+                 }
+               }); */
+               var name = 'User';
+               var hours = new Date().getHours();
+               var mins =  new Date().getMinutes();
+               var minsStr = '';
+               if (mins < 10){
+                 minsStr = mins + mins.toString();
+               }
+               else{
+                 minsStr = mins.toString();
+               }
+               var time =  hours+ ':' +minsStr;
+              
+   
+               input.addEventListener('keypress', function(e) {
+                  var msgs = document.getElementsByClassName("message");
+                  var key = e.which || e.keyCode;
+                  
+                   if (key === 13) {
+                      var text = input.value;
+                      console.log(text)
+                      if (text.length > 0){
+                        messages.innerHTML += '<br/><br/><div class="messagesIncTime"><div class="messagesYou"><span class="text">' + text + '</span></div><span class="time timeYou"> ' + time + '</span></div>';
+                        input.value = '';
+                      }
+                      
+                      myVar = reflexive({{msgouts|tojson}})
+                   }
+   
+               });
+   
+         </script>
+   
+             <!-- Bootstrap core JavaScript
+         ================================================== -->
+         <!-- Placed at the end of the document so the pages load faster -->
+         <!-- JavaScript Bundle with Popper -->
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js%22%3E</script>
+       </main>
+   
+   </body>
+   </html>

@@ -3,7 +3,7 @@ import os
 from decouple import config
 
 class Questions:
-    def socrates(context, currResponse):
+    def socrates(self, context, currResponse):
         '''
         Generates questions in response to "currResponse" based on the following conversational context. 
         Questions will be used in the future to gather more insight about the person who said the currResponse.
@@ -12,7 +12,7 @@ class Questions:
         Out: questions: str
         '''
         openai.api_key = config("OPENAI_API_KEY")
-
+        currResponse = currResponse.strip()
         questions = openai.Completion.create(
             model="text-davinci-002",
             prompt="The following is context to a conversation between a therapist ('T') and a patient ('P')\n\n"+context+"\n\nThe patients last response was:"+currResponse+"\n\nGenerate five questions that may provide more insight to the therapist about the patient and the patient's emotions.",

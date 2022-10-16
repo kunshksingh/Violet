@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from decouple import config
 import openai
 import collections
-
+import time
 
 class Experiences:
     probDict = None
@@ -20,20 +20,24 @@ class Experiences:
         experiences.extend(manualExperiences)
 
         #Input Handling
-        experienceStr = "A young and caring female therapist may have had the experience of working with a young girl who was sexually abused. The therapist may have helped the girl to feel safe and to talk about her experiences. The therapist may have also helped the girl to understand her feelings and to make a plan to heal."
+        experienceStr = "I grew up in a family with limited resources. I attended a local school where I struggled to keep up with my classmates. Despite the challenges, I persevered and was able to graduate from high school. I then went on to college, where I was able to take advantage of opportunities and resources that I otherwise would not have had access to."
         experiences.append(experienceStr)
+        f = open("experienceData.txt", "r")
+        for n in range(20):
+            experiences.append(experienceStr)
         cleaner = CleanInput()
         words = []
         #Generate Keywords from each experience; parse into a list
+        topKeywords = ""
         for experience in experiences:
 
             #Wrap experience in quotation marks"
             experience = "\""+experience+"\""
-
+            
             start_sequence = "Traits:"
 
             keywords = openai.Completion.create(
-                model="text-curie-001",
+                model="text-curie-001", #Curie works the best, but quite expensive
                 prompt="Use the following experience to generate 10 character traits about Violet. \n\n\"I remember feeling powerless and alone as a child. I often felt like I didn't have anyone to turn to for help or support. I felt like I had to be perfect and always do everything right in order to be loved and accepted. I often felt like I was walking on eggshells, never sure when I would make a mistake and be rejected or ridiculed. I felt like I constantly had to prove myself and my worth. I often felt invisible and unimportant. I felt like my needs and feelings didn't matter. I felt like I was always trying to please others and put their needs before my own.\"\n\nTraits: powerful, alone, flawed, loved, accepted, rejected, ridiculed, visible, important, needy, feelings, people-pleasing\n\n"+experience+"\n\n",
                 temperature=0,
                 max_tokens=128,
@@ -43,33 +47,35 @@ class Experiences:
                 stop=["\n"],
                 #best_of = 2 Too expensive
             )
-            topKeywords = str(keywords['choices'][0]['text'])
+           
+            topKeywords = str(keywords['choices'][0]['text'])+', '+topKeywords[8:] 
+            #print(topKeywords)
+        
+        keywords2 = openai.Completion.create(
+            model="text-curie-001",
+            prompt="Add more character traits relevant to the character traits below.\n\n"+topKeywords,
+            temperature=0,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+        topKeywords = str(topKeywords+keywords2['choices'][0]['text'])
+        #print(topKeywords2)
+        #start_sequence = "Traits:"
 
-            keywords2 = openai.Completion.create(
-                model="text-babbage-001",
-                prompt="Add more character traits relevant to the character traits below.\n\n"+topKeywords,
-                temperature=0,
-                max_tokens=256,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0
-            )
-            topKeywords2 = str(topKeywords+keywords2['choices'][0]['text'])
-            #print(topKeywords2)
-            #start_sequence = "Traits:"
-
-            keywordsTrimmed = openai.Completion.create(
-                model="text-davinci-002",
-                prompt="Get rid of all character traits that do not belong. Condense all traits into a word each.\n\n"+topKeywords+"\n\n",
-                temperature=0,
-                max_tokens=64,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0,
-                #stop=["\n"]
-            )
-            topTrimmedKeywords = str(keywordsTrimmed['choices'][0]['text'])
-            words.extend(cleaner.clean(topTrimmedKeywords))
+        keywordsTrimmed = openai.Completion.create(
+            model="text-davinci-002",
+            prompt="Get rid of all character traits that do not belong. Condense all traits into a word each.\n\n"+topKeywords+"\n\n",
+            temperature=0,
+            max_tokens=64,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0,
+            #stop=["\n"]
+        )
+        topTrimmedKeywords = str(keywordsTrimmed['choices'][0]['text'])
+        words.extend(cleaner.clean(topTrimmedKeywords))
 
         #Make simple probability distribution
         self.probDict = dict(collections.Counter(words))
@@ -81,5 +87,7 @@ class Experiences:
         #EXAMPLE EXPERIENCE IN TOKENS IN ORDER TO GET PROBABILITY DISTRIBUTION OF WORDS
         #experienceStr = "A young and caring female therapist may have had the experience of working with a young girl who was sexually abused. The therapist may have helped the girl to feel safe and to talk about her experiences. The therapist may have also helped the girl to understand her feelings and to make a plan to heal."
         #print(CleanInput.generateCleanInput(experienceStr))
+start = time.time()
 exps = Experiences()
-exps.violetExps(experiences=[], manualExperiences=[])
+print(exps.violetExps(experiences=[], manualExperiences=[]))
+print(time.time()-start,"seconds")
