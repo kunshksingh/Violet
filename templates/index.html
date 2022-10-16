@@ -49,7 +49,7 @@
   </nav>
   <main role="main" class="container" style="margin-top:100px">
       <div class="messages">
-        {% for msg in conversation%}
+        {% for msg in data %}
         <div class="messagesIncTime">
           <div class="messagesYou">
               <span class="textYou">Hello</span>
@@ -59,26 +59,37 @@
         <br/>
         <div class="messagesIncTime">
           <div class="messagesThem">
-              <span class="name">Jane </span>
+              <span class="name">Violet </span>
               <span class="text">Hi</span>
           </div>
           <span class="time timeThem">10:01</span>
         </div>
-        {%end for}
-          <form>
+        {% endfor %}
+          <form method="post">
           <div class="input">
             <input name="lastmsg" type="text" placeholder="Type your message here...">
           </div>
           </form>
             <script type = "text/javascript" src = "../static/app.js"></script>
+            <!--
             <script>
+                var to_speak = new SpeechSynthesisUtterance("Hello world, speaking up here!");
+                to_speak.lang = "en-US";
+                window.speechSynthesis.speak(to_speak);
+                // Start listening.
+                //annyang.start();
+            </script>
+            Text to speech
+            -->
+            <script>
+            
    
              // Create a javascript function that makes a night blue/purple themed text messenger application
              // The application should have a text input field and a messages box
              // Lock chatbar when no messages come through
-            var delayInMilliseconds = 1000; 
+            var delayInMilliseconds = 40000; 
 
-            setTimeout(function() {
+            //setTimeout(function() {
               var convos = $('.messageIncTime.messagesYou.textYou');
               var messages = document.querySelector('.messages');
                 $.ajax({ 
@@ -120,7 +131,7 @@
 
                   });
 
-            }, delayInMilliseconds);
+            //}, delayInMilliseconds);
            
          </script>
    

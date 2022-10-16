@@ -87,7 +87,9 @@ class Experiences:
         #EXAMPLE EXPERIENCE IN TOKENS IN ORDER TO GET PROBABILITY DISTRIBUTION OF WORDS
         #experienceStr = "A young and caring female therapist may have had the experience of working with a young girl who was sexually abused. The therapist may have helped the girl to feel safe and to talk about her experiences. The therapist may have also helped the girl to understand her feelings and to make a plan to heal."
         #print(CleanInput.generateCleanInput(experienceStr))
+'''
 start = time.time()
 exps = Experiences()
 print(exps.violetExps(experiences=[], manualExperiences=[]))
 print(time.time()-start,"seconds")
+'''

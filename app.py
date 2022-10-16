@@ -1,6 +1,7 @@
 # Import flask and render_template
 from flask import Flask, render_template, request
 import os
+from Main import *
 
 # Create your application object
 app = Flask(__name__)
@@ -8,6 +9,8 @@ conversation = []
 times = []
 texts = dict(zip(conversation, times))
 converation = []
+response = "Hi, I'm Violet. It's so nice to meet you today!"
+m = Main()
 # Use the decorator pattern to
 # link the view function to a url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,7 +21,8 @@ def home():
 
 @app.route('/')
 def index():
-    return render_template('index.html',{"conversation":conversation}) 
+    data = {"conversation":conversation}
+    return render_template('index.html', data=data) 
 
 @app.route('/sendmessage', methods=["POST"])
 def sendmessage():
@@ -27,7 +31,10 @@ def sendmessage():
     data = data[data.find("lastmsg=")+8:]
     data = data[:data.find("'")]
     data = data.replace("+"," ")
-    conversation.append("data")
+    conversation.append(data)
+    response = m.main(conversation)
+    conversation.append(response)
+    print(conversation)
     return "E"
 
 
