@@ -40,9 +40,13 @@ class Main():
         '''
         exps = Experiences()
         em = Emotion()
+        f = open("experienceData.txt", "r")
+        readExperiences = f.read()
+        f_content = readExperiences.split('\n\n')
         experiences = exps.violetExps(experiences=[], manualExperiences=[])#TODO Update with actual experiences 
         v.characteristics = (', ').join(list(experiences.keys()))[:-2] #Keys are characteristics
         v.emotion = em.emotionalDistribution(experiences)
+        f.close()
 
     def updateConvo(self,texts): #Conversation used for testing
         '''
