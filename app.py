@@ -18,7 +18,6 @@ def home():
 @app.route('/')
 def index():
     converation = []
-    print(request.form['lastmsg'])
     return render_template('index.html') 
 
 
