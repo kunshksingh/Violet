@@ -1,6 +1,6 @@
 # Violet
 
-Meet the world's first talking AI theraputic friend, built on OpenAI Whisper.
+Meet the first AI model built off an artificial experience set, Violet.
 
 
 # Emotions.py
